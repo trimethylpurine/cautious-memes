@@ -4,38 +4,35 @@
 echo "Run filter script? y/n"
 read usr_resp
 if [[ $usr_resp = "Y" || $usr_resp == "y" ]]; then
-	echo "Enter word to filter by:"
-	read word_filtered
-	echo "Filtering using $word_filtered..."
-	filtered_text=$(cat "New Text Document.txt"| grep $word_filtered)
-	printf "$filtered_text\n" > "New Text Document.txt1.txt"
-	echo "Filtering done!"
-	
-	echo "How many strings to replace?"
-	read num_str
-	for 1:$num_str
-	do
-		echo "Enter replaced word:"
-		read replaced_word
-		echo "Enter replacee word:"
-		read replacee_word
-		echo "OK! Replacing $replaced_word with $replacee_word..."
-		replaced_text=$(cat "New Text Document1.txt"| sed s/$replaced_word/$replacee_word/g)
-		printf "$replaced_text\n" > "New Text Document1.txt"
-		echo "Replacing done!"
-	done
-	
+echo "Enter word to filter by:"
+read word_filtered
+echo "Filtering using $word_filtered..."
+filtered_text=$(cat "New Text Document.txt"| grep $word_filtered)
+printf "$filtered_text\n" > "New Text Document1.txt"
+echo "Filtering done!"
+
+echo "How many strings to replace?"
+read num_str
+for ((i=1;i<=num_str;i++)); do
+echo "Enter replaced word:"
+read replaced_word
+echo "Enter replacee word:"
+read replacee_word
+echo "OK! Replacing $replaced_word with $replacee_word..."
+replaced_text=$(cat "New Text Document1.txt"| sed s/$replaced_word/$replacee_word/g)
+printf "$replaced_text\n" > "New Text Document1.txt"
+echo "Replacing done!"
+done
+
 else
 
-	echo "Enter replaced word:"
-	read replaced_word
-	echo "Enter replacee word:"
-	read replacee_word
-	echo "OK! Replacing $replaced_word with $replacee_word..."
-	replaced_text=$(cat "New Text Document.txt"| sed s/$replaced_word/$replacee_word/g)
-	printf "$replaced_text\n" > "replaced_text.txt"
-	echo "Replacing done!"
+echo "Enter replaced word:"
+read replaced_word
+echo "Enter replacee word:"
+read replacee_word
+echo "OK! Replacing $replaced_word with $replacee_word..."
+replaced_text=$(cat "New Text Document1.txt"| sed s/$replaced_word/$replacee_word/g)
+printf "$replaced_text\n" > "replaced_text.txt"
+echo "Replacing done!"
 
 fi
-
-#for 1:length
